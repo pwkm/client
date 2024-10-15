@@ -7,6 +7,11 @@ import (
 	"strings"
 )
 
+var (
+	ERROR_INVALID_EMAIL  = errors.New("Invalid email address!")
+	ERROR_INVALID_PASSWD = errors.New("Invalid password!")
+)
+
 type Login struct {
 	Email    string
 	Password string
@@ -14,11 +19,11 @@ type Login struct {
 
 func NewLogin(email string, passwd string) (*Login, error) {
 	if !isValidEmail(email) {
-		return nil, errors.New("wrong Email")
+		return nil, errors.New(ERROR_INVALID_EMAIL.Error())
 	}
 
 	if len(passwd) != 0 {
-		return nil, errors.New("wrong password")
+		return nil, errors.New(ERROR_INVALID_PASSWD.Error())
 	}
 
 	return &Login{
