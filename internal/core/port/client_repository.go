@@ -1,9 +1,9 @@
 package ports
 
-import "github.com/pwkm/client/internal/domain"
+import "github.com/pwkm/client/internal/core/domain"
 
 type DBRepository interface {
-	Save(client *domain.Client) error
+	SaveClient(client *domain.Client) error
 	FindByID(id string) (*domain.Client, error)
 	SaveLogin(login *domain.Login) error
 }

@@ -5,6 +5,8 @@ import (
 	"net"
 	"net/mail"
 	"strings"
+
+	"github.com/google/uuid"
 )
 
 var (
@@ -13,6 +15,7 @@ var (
 )
 
 type Login struct {
+	ClientID uuid.UUID
 	Email    string
 	Password string
 }
