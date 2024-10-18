@@ -1,26 +1,23 @@
 package postgres
 
 import (
-	"context"
 	"database/sql"
 	"fmt"
 
-	"github.com/GoesToEleven/golang-web-dev/046_mongodb/15_postgres/config"
+	"github.com/pwkm/client/internal/core/util"
+
 	_ "github.com/lib/pq" // PostgreSQL driver
 )
 
-type DB struct {
-}
-
 // New creates a new PostgreSQL database instance
-func New(ctx context.Context, config *config.DB) (*sql.DB, error) {
+func PostgresNew(config *util.Container) (*sql.DB, error) {
 	ConnectString := fmt.Sprintf("%s://%s:%s@%s:%s/%s?sslmode=disable",
-		config.Connection,
-		config.User,
-		config.Password,
-		config.Host,
-		config.Port,
-		config.Name,
+		config.DB.Connection,
+		config.DB.User,
+		config.DB.Password,
+		config.DB.Host,
+		config.DB.Port,
+		config.DB.Name,
 	)
 
 	db, err := sql.Open(config.DB.Connection, ConnectString)

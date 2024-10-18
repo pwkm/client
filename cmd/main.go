@@ -26,7 +26,7 @@ func main() {
 	ctx := context.Background()
 
 	// -- Database config
-	db := setupDatabase(config)
+	db := postgres.PostgresNew(config)
 
 	// userRepo := postgres.NewPostgresUserRepository(db) // Create the adapter
 	db, err := postgres.New(ctx, config.DB)
