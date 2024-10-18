@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/pwkm/client/internal/storage/postgres"
+	"github.com/pwkm/client/internal/adapter/postgres"
 	"github.com/pwkm/client/internal/util"
 	"gorm.io/driver/postgres"
 )
