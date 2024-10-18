@@ -6,8 +6,8 @@ import (
 	"log"
 
 	"github.com/pwkm/client/internal/adapter/postgres"
+	"github.com/pwkm/client/internal/core/service"
 	"github.com/pwkm/client/internal/util"
-	"gorm.io/driver/postgres"
 )
 
 func main() {
@@ -29,6 +29,7 @@ func main() {
 	db, err := postgres.PostgresNew(config)
 	defer db.Close()
 
+	clientService := service.NewClientService()
 	// userRepo := postgres.NewPostgresUserRepository(db) // Create the adapter
 
 	// userService := application.NewUserService(userRepo) // Inject into the service
