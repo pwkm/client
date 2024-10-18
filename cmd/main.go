@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 	"log"
 
-	"github.com/pwkm/client/internal/core/util"
+	"github.com/pwkm/client/internal/storage/postgres"
+	"github.com/pwkm/client/internal/util"
 	"gorm.io/driver/postgres"
 )
 
@@ -26,10 +26,11 @@ func main() {
 	ctx := context.Background()
 
 	// -- Database config
-	db := postgres.PostgresNew(config)
+	db, err := postgres.PostgresNew(config)
+	defer db.Close()
 
 	// userRepo := postgres.NewPostgresUserRepository(db) // Create the adapter
-	db, err := postgres.New(ctx, config.DB)
+
 	// userService := application.NewUserService(userRepo) // Inject into the service
 
 	// userHandler := http.NewUserHandler(userService)     // Wire the handler
@@ -37,28 +38,5 @@ func main() {
 	// // Set up the HTTP server
 	// http.HandleFunc("/users", userHandler.CreateUser)
 	// log.Fatal(http.ListenAndServe(":8080", nil))
-
-}
-
-func setupDatabase(config *util.Container) *sql.DB {
-	// -- Database config
-	// Database connection
-	dataSourceName := fmt.Sprintf("host=%s port=%d user=%s "+
-		"password=%s dbname=%s sslmode=disable",
-		config.DB.Host, config.DB.Port, config.DB.User, config.DB.Password, config.DB.Name)
-
-	db, err := sql.Open(config.DB.Connection, dataSourceName)
-	if err != nil {
-		log.Fatalf("Failed to connect to database: %v", err)
-	}
-	defer db.Close()
-
-	err = db.Ping()
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println("Successfully connected!")
-	return db
 
 }
