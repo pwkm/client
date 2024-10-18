@@ -1,4 +1,4 @@
-package application
+package service
 
 import (
 	"github.com/pwkm/client/internal/core/domain"
