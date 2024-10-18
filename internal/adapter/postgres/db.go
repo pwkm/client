@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
+	"github.com/pwkm/client/internal/core/domain"
 	"github.com/pwkm/client/internal/util"
 
 	_ "github.com/lib/pq" // PostgreSQL driver
@@ -31,4 +32,19 @@ func PostgresNew(config *util.Container) (*sql.DB, error) {
 	}
 
 	return db, nil
+}
+
+func SaveClient(client *domain.Client) error {
+
+	return nil
+}
+
+func FindByID(id string) (*domain.Client, error) {
+
+	return nil, nil
+}
+
+func SaveLogin(login *domain.Login) error {
+
+	return nil
 }

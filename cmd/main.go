@@ -29,7 +29,7 @@ func main() {
 	db, err := postgres.PostgresNew(config)
 	defer db.Close()
 
-	clientService := service.NewClientService()
+	clientService := service.NewClientService(db)
 	// userRepo := postgres.NewPostgresUserRepository(db) // Create the adapter
 
 	// userService := application.NewUserService(userRepo) // Inject into the service
