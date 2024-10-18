@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/pwkm/client/internal/core/util"
+	"github.com/pwkm/client/internal/util"
 
 	_ "github.com/lib/pq" // PostgreSQL driver
 )
